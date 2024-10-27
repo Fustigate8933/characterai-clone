@@ -16,6 +16,7 @@
     "@nuxtjs/supabase": "^1.4.0",
     "@nuxtjs/tailwindcss": "^6.12.1",
     "nuxt": "^3.13.0",
+    "openai": "^4.68.4",
     "vue": "latest",
     "vue-router": "latest"
   },
