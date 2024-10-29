@@ -14,7 +14,8 @@
 				<h1>{{ name }}</h1>
 			</div>
 			<div class="p-4 rounded-xl bg-[#26272b]">
-				<h1>{{ content }}</h1>
+				<!-- <h1>{{ content }}</h1> -->
+				<div v-html="parsedContent"></div>
 			</div>
 		</div>
 
@@ -32,13 +33,21 @@
 				</div>
 			</div>
 			<div class="p-4 rounded-xl bg-[#26272b]">
-				<h1>{{ content }}</h1>
+				<!-- <h1>{{ content }}</h1> -->
+				<div v-html="parsedContent"></div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-	defineProps(["name", "img", "content", "end"])
+const props = defineProps(["name", "img", "content", "end"])
+import { marked } from "marked"
+
+marked.use({
+	gfm: true
+})
+
+const parsedContent = computed(() => marked.parseInline(props.content))
 </script>
 

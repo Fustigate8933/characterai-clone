@@ -67,12 +67,14 @@
 				<div class="flex flex-col gap-5 max-w-4xl mt-auto self-center w-full">
 					<div class="bg-[#202024] w-full px-3 rounded-full flex items-center gap-2 py-2">
 						<div class="flex items-center w-full px-4">
-							<textarea 
+							<textarea
+								ref="textareaRef"
 								v-model="message"
 								placeholder="Message Character Assistant..." 
 								class="bg-transparent rounded-s flex-grow focus:outline-none resize-none overflow-hidden"
 								rows="1"
 								@input="autoGrow"
+								@keyup.enter.exact="sendMessage"
 							/>
 						</div>
 						<div class="flex">
@@ -95,13 +97,14 @@
 const { bot } = useRoute().params
 const { content, isStreaming, startStreaming, history } = useStreaming()
 const message = ref("")
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
 
 async function sendMessage(){
 	if (message.value.trim() && !isStreaming.value){
 		await startStreaming(message.value)
 		message.value = ""
+		textareaRef.value.style.height = "auto"
 	}
-	console.log(history.value)
 }
 
 function autoGrow(event: Event) {
