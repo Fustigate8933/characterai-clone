@@ -74,7 +74,8 @@
 								class="bg-transparent rounded-s flex-grow focus:outline-none resize-none overflow-hidden"
 								rows="1"
 								@input="autoGrow"
-								@keyup.enter.exact="sendMessage"
+								@keyup.enter.exact.prevent="sendMessage"
+								:disabled="isStreaming"
 							/>
 						</div>
 						<div class="flex">
