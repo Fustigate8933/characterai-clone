@@ -7,9 +7,10 @@
 					<div class="flex gap-3 items-center">
 						<div>
 							<NuxtImg
-								src="/botimg.png"
-								width="34px"
-								height="34px"
+								class="rounded-full"
+								src="/frieren.png"
+								width="40px"
+								height="40px"
 								format="webp"
 								alt="Character.ai Logo"
 							/>
@@ -33,7 +34,8 @@
 					<div class="flex flex-col items-center">
 						<div>
 							<NuxtImg
-								src="/botimg.png"
+								class="rounded-full"
+								src="/frieren.png"
 								width="60px"
 								height="60px"
 								format="webp"
@@ -49,15 +51,15 @@
 						<DialogueCard 
 							v-for="(message, i) in history.slice(1)"
 							:key="i"
-							:name="message.role === 'user' ? 'User' : 'Character Assistant'"
-							:img="message.role === 'user' ? '/botimg.png' : '/botimg.png'"
+							:name="message.role === 'user' ? 'User' : 'Frieren'"
+							:img="message.role === 'user' ? '/frieren.png' : '/frieren.png'"
 							:content="message.content"
 							:end="message.role === 'user' ? true : false"
 						/>
 						<DialogueCard 
 							v-if="isStreaming"
-							name="Character Assistant" 
-							img="/botimg.png" 
+							name="Frieren" 
+							img="/frieren.png" 
 							:content="content" 
 							:end="false" 
 						/>

@@ -4,6 +4,7 @@
 			<div class="flex gap-3 text-sm items-center">
 				<div>
 					<NuxtImg
+						class="rounded-full"
 						:src="img"
 						width="24px"
 						height="24px"
@@ -12,9 +13,11 @@
 					/>
 				</div>
 				<h1>{{ name }}</h1>
+				<button class="flex items-center" :onClick="playText" >
+					<Icon name="solar:play-bold" class="bg-blue-400 text-center" size="0.8em" />
+				</button>
 			</div>
 			<div class="p-4 rounded-xl bg-[#26272b]">
-				<!-- <h1>{{ content }}</h1> -->
 				<div v-html="parsedContent"></div>
 			</div>
 		</div>
@@ -24,6 +27,7 @@
 				<h1>{{ name }}</h1>
 				<div>
 					<NuxtImg
+						class="rounded-full"
 						:src="img"
 						width="24px"
 						height="24px"
@@ -33,7 +37,6 @@
 				</div>
 			</div>
 			<div class="p-4 rounded-xl bg-[#26272b]">
-				<!-- <h1>{{ content }}</h1> -->
 				<div v-html="parsedContent"></div>
 			</div>
 		</div>
@@ -49,5 +52,12 @@ marked.use({
 })
 
 const parsedContent = computed(() => marked.parseInline(props.content))
+
+const audio = ref(null)
+
+const { isPlaying, playTTS } = useTTS()
+const playText = () => {
+	playTTS("I am harry potter")
+}
 </script>
 
