@@ -13,8 +13,9 @@
 					/>
 				</div>
 				<h1>{{ name }}</h1>
-				<button class="flex items-center" :onClick="playText" >
-					<Icon name="solar:play-bold" class="bg-blue-400 text-center" size="0.8em" />
+				<button class="flex items-center" :onClick="playText" :disabled="isPlaying" >
+					<Icon v-if="!isPlaying" name="solar:play-bold" class="bg-blue-400 text-center" size="0.8em" />
+					<Icon v-else name="svg-spinners:wind-toy" class="bg-blue-400 text-center" size="1.2em" />
 				</button>
 			</div>
 			<div class="p-4 rounded-xl bg-[#26272b]">
