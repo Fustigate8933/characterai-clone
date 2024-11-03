@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const { text } = body
 
   try {
-    const response = await fetch('http://your-tts-api-url/tts', {
+    const response = await fetch('http://127.0.0.1:8001/predict', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,10 +15,12 @@ export default defineEventHandler(async (event) => {
       throw new Error('TTS API request failed')
     }
 
-    const audioData = await response.arrayBuffer()
+    const data = await response.json()
+    const audioContent = Buffer.from(data.audio_content, 'base64')
 
     setResponseHeader(event, 'Content-Type', 'audio/wav')
-    return audioData
+
+    return audioContent
   } catch (error) {
     console.error('TTS API error:', error)
     throw createError({

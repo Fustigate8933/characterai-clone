@@ -25,6 +25,7 @@ export function useTTS() {
       if (!audioContext.value) {
         audioContext.value = new (window.AudioContext || (window as any).webkitAudioContext)()
       }
+			console.log(arrayBuffer)
 
       const audioBuffer = await audioContext.value.decodeAudioData(arrayBuffer)
       const source = audioContext.value.createBufferSource()

@@ -57,7 +57,7 @@ const audio = ref(null)
 
 const { isPlaying, playTTS } = useTTS()
 const playText = () => {
-	playTTS("I am harry potter")
+	playTTS(props.content)
 }
 </script>
 
